@@ -21,34 +21,30 @@ import Dashboard from './ui/Dashboard'
 
 export default class App extends Component {
 
-  state = {
-    authUser: null,
-    showLoginForm: false
-  };
-
   componentWillMount() {
+    this.setState({authUser: null, showLoginForm: false})
+  }
+
+  componentDidMount() {
     firebaseAuth.onAuthStateChanged(user => {
       if (user) {
         console.warn("User exists onAuthStateChanged")
         setTimeout(() => {
-          this.setState = {
-            authUser: firebaseAuth.currentUser
-          }
+          this.setState({authUser: user, showLoginForm: false})
           console.warn("setState authUser received")
         }, 2000);
       } else {
         console.warn("User not exists onAuthStateChanged")
         setTimeout(() => {
-          this.setState = {
-            showLoginForm: true
-          }
-          console.warn("User not exists showloginform onAuthStateChanged")
+          this.setState({authUser: null, showLoginForm: true})
+          console.warn("User not exists showloginform onAuthStateChanged" + JSON.stringify(this.state))
         }, 2000);
       }
     });
   }
 
   render() {
+    console.warn("inside render" + JSON.stringify(this.state))
     if (this.state.authUser) {
       console.warn("User exists Dashboard")
       return (<Dashboard/>);

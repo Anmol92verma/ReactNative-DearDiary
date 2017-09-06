@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, View, Text, Button, ActivityIndicator} from 'react-native';
 import TitledInput from './TitledInput';
+import firebaseAuth from '../FirebaseAuth.js'
 
 export default class LoginForm extends Component {
 

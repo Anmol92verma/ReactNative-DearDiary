@@ -5,22 +5,47 @@ import {
     View,
     Text,
     Button,
-    ActivityIndicator
+    ActivityIndicator,
+    TouchableHighlight,
+    BackHandler,
+    BackAndroid
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import LogoutIcon from 'react-native-vector-icons/MaterialCommunityIcons'
+import firebaseAuth from '../FirebaseAuth'
+import {Dashboard as dashboard} from './Dashboard'
 
 export default class Toolbar extends Component {
+
+    handleBack = () => {
+        console.warn("Back Pressed")
+    }
+
+    logout = () => {
+        firebaseAuth.signOut();
+        console.warn("Logout Requested")
+    }
 
     render() {
         return (
             <View style={styles.toolbarStyle}>
-                <Icon style={styles.backStyle} name="arrow-back" size={30} color="#FFFFFF"/>
+                <Icon
+                    onPress={this.handleBack}
+                    style={styles.backStyle}
+                    name="arrow-back"
+                    size={30}
+                    color="#FFFFFF"/>
                 <Text style={styles.toolbarTitle}>Dashboard</Text>
+                <LogoutIcon
+                    onPress={this.logout}
+                    style={styles.logoutIcon}
+                    name="logout"
+                    size={30}
+                    color="#FFFFFF"/>
             </View>
         );
     }
 }
-
 AppRegistry.registerComponent('Toolbar', () => Toolbar);
 
 const styles = StyleSheet.create({
@@ -33,6 +58,10 @@ const styles = StyleSheet.create({
     },
     backStyle: {
         marginLeft: 10
+    },
+    logoutIcon: {
+        marginLeft: 'auto',
+        paddingRight: 20
     },
     toolbarTitle: {
         fontSize: 20,

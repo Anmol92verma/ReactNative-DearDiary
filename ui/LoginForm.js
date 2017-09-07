@@ -8,6 +8,7 @@ import {
     TextInput
 } from 'react-native';
 import firebaseAuth from '../FirebaseAuth.js'
+import Toolbar from './Toolbar'
 
 export default class LoginForm extends Component {
 
@@ -83,7 +84,8 @@ export default class LoginForm extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
+                <Toolbar/>
                 <TextInput
                     placeholder='you@domain.com'
                     value={this.state.email}
@@ -104,6 +106,11 @@ export default class LoginForm extends Component {
 AppRegistry.registerComponent('LoginForm', () => LoginForm);
 
 const styles = {
+    container: {
+        backgroundColor: '#FFC300',
+        flex: 1,
+        flexDirection: 'column'
+    },
     errorTextStyle: {
         color: '#E64A19',
         alignSelf: 'center',

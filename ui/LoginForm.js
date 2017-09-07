@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import firebaseAuth from '../FirebaseAuth.js'
 import Toolbar from './Toolbar'
+import ToolbarLoginForm from './ToolbarLoginForm'
 
 export default class LoginForm extends Component {
 
@@ -85,7 +86,7 @@ export default class LoginForm extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Toolbar/>
+                <ToolbarLoginForm/>
                 <TextInput
                     placeholder='you@domain.com'
                     value={this.state.email}

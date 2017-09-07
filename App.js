@@ -28,31 +28,31 @@ export default class App extends Component {
   componentDidMount() {
     firebaseAuth.onAuthStateChanged(user => {
       if (user) {
-        console.warn("User exists onAuthStateChanged")
+        console.log("User exists onAuthStateChanged")
         setTimeout(() => {
           this.setState({authUser: user, showLoginForm: false})
-          console.warn("setState authUser received")
-        }, 2000);
+          console.log("setState authUser received")
+        }, 1000);
       } else {
-        console.warn("User not exists onAuthStateChanged")
+        console.log("User not exists onAuthStateChanged")
         setTimeout(() => {
           this.setState({authUser: null, showLoginForm: true})
-          console.warn("User not exists showloginform onAuthStateChanged" + JSON.stringify(this.state))
-        }, 2000);
+          console.log("User not exists showloginform onAuthStateChanged" + JSON.stringify(this.state))
+        }, 1000);
       }
     });
   }
 
   render() {
-    console.warn("inside render" + JSON.stringify(this.state))
+    console.log("inside render" + JSON.stringify(this.state))
     if (this.state.authUser) {
-      console.warn("User exists Dashboard")
+      console.log("User exists Dashboard")
       return (<Dashboard/>);
     } else if (this.state.showLoginForm) {
-      console.warn("User not exists showLoginForm")
+      console.log("User not exists showLoginForm")
       return (<LoginForm/>);
     } else {
-      console.warn("User not exists splash screen")
+      console.log("User not exists splash screen")
       return (<SplashScreen/>);
     }
   }

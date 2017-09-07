@@ -1,6 +1,12 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Button, ActivityIndicator} from 'react-native';
-import TitledInput from './TitledInput';
+import {
+    AppRegistry,
+    View,
+    Text,
+    Button,
+    ActivityIndicator,
+    TextInput
+} from 'react-native';
 import firebaseAuth from '../FirebaseAuth.js'
 
 export default class LoginForm extends Component {
@@ -78,13 +84,11 @@ export default class LoginForm extends Component {
     render() {
         return (
             <View>
-                <TitledInput
-                    label='Email Address'
+                <TextInput
                     placeholder='you@domain.com'
                     value={this.state.email}
                     onChangeText={email => this.setState({email})}/>
-                <TitledInput
-                    label='Password'
+                <TextInput
                     autoCorrect={false}
                     placeholder='*******'
                     secureTextEntry

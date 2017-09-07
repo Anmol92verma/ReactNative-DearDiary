@@ -14,16 +14,22 @@ import {
     Image,
     ActivityIndicator
 } from 'react-native';
+import firebaseDatabase from '../FirebaseDatabase'
+import firebaseAuth from '../FirebaseAuth'
+
+import Toolbar from './Toolbar'
 
 export default class Dashboard extends Component {
 
     render() {
         return (
             <View style={styles.container}>
+                <Toolbar/>
+
                 <ActivityIndicator
                     style={styles.activityIndicator}
                     color='#bc2b78'
-                    size="small"/>
+                    size="large"/>
             </View>
         );
 
@@ -33,12 +39,9 @@ AppRegistry.registerComponent('Dashboard', () => Dashboard);
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        backgroundColor: '#FFC300'
+        backgroundColor: '#FFC300',
+        flex: 1,
+        flexDirection: 'column'
     },
     activityIndicator: {
         flex: 1,

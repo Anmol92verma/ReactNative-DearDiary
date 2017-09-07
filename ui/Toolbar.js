@@ -28,18 +28,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFA500',
         flex: 0,
         flexDirection: 'row',
-        height: 56
+        height: 56,
+        alignItems: 'center'
     },
     backStyle: {
-        marginLeft: 10,
-        marginTop: 10
+        marginLeft: 10
     },
     toolbarTitle: {
         fontSize: 20,
         marginLeft: 10,
         textAlign: 'center',
         justifyContent: 'center',
-        color: "#FFFFFF",
-        marginTop: 10
+        color: "#FFFFFF"
     }
 });

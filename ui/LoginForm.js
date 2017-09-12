@@ -5,11 +5,14 @@ import {
     Text,
     Button,
     ActivityIndicator,
-    TextInput
+    TextInput,
+    StyleSheet
 } from 'react-native';
 import firebaseAuth from '../FirebaseAuth.js'
 import Toolbar from './Toolbar'
 import ToolbarLoginForm from './ToolbarLoginForm'
+import {TextField} from 'react-native-material-textfield'
+import colors from './colors.js'
 
 export default class LoginForm extends Component {
 
@@ -64,18 +67,20 @@ export default class LoginForm extends Component {
         if (this.state.loading) {
             return <ActivityIndicator
                 style={styles.activityIndicator}
-                color='#bc2b78'
+                color={colors.colorSpinner}
                 size="small"/>;
         }
 
         if (this.state.authUser == null) {
             return <Button
+                color={colors.colorPrimaryDark}
                 onPress={this
                 .onLoginPress
                 .bind(this)}
                 title='Log In'/>;
         } else {
             return <Button
+                color={colors.colorPrimaryDark}
                 onPress={this
                 .onLogoutPress
                 .bind(this)}
@@ -83,22 +88,34 @@ export default class LoginForm extends Component {
         }
 
     }
+
+    popBack() {
+        this
+            .props
+            .navigation
+            .goBack(null)
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <ToolbarLoginForm/>
-                <TextInput
-                    placeholder='you@domain.com'
-                    value={this.state.email}
-                    onChangeText={email => this.setState({email})}/>
-                <TextInput
-                    autoCorrect={false}
-                    placeholder='*******'
-                    secureTextEntry
-                    value={this.state.password}
-                    onChangeText={password => this.setState({password})}/>
-                <Text style={styles.errorTextStyle}>{this.state.error}</Text>
-                {this.renderButtonOrSpinner()}
+                <ToolbarLoginForm popBack={this.popBack}/>
+                <View style={styles.loginField}>
+                    <TextField
+                        placeholder='you@domain.com'
+                        value={this.state.email}
+                        tintColor={colors.colorEditTextTint}
+                        onChangeText={email => this.setState({email})}/>
+                    <TextField
+                        autoCorrect={false}
+                        placeholder='*******'
+                        secureTextEntry
+                        value={this.state.password}
+                        tintColor={colors.colorEditTextTint}
+                        onChangeText={password => this.setState({password})}/>
+                    <Text style={styles.errorTextStyle}>{this.state.error}</Text>
+                    {this.renderButtonOrSpinner()}
+                </View>
             </View>
         );
     }
@@ -106,16 +123,23 @@ export default class LoginForm extends Component {
 
 AppRegistry.registerComponent('LoginForm', () => LoginForm);
 
-const styles = {
+const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FFC300',
+        backgroundColor: colors.colorPrimary,
         flex: 1,
         flexDirection: 'column'
     },
+    loginField: {
+        marginLeft: 40,
+        marginRight: 40
+    },
     errorTextStyle: {
-        color: '#E64A19',
+        color: colors.colorError,
         alignSelf: 'center',
         paddingTop: 10,
         paddingBottom: 10
+    },
+    buttonStyle: {
+        backgroundColor: 'red'
     }
-};
+});

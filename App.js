@@ -17,7 +17,7 @@ import {
 import firebaseAuth from './FirebaseAuth.js'
 import SplashScreen from './SplashScreen'
 import LoginForm from './ui/LoginForm'
-import Dashboard from './ui/Dashboard'
+import Router from './ui/Router'
 
 export default class App extends Component {
 
@@ -28,31 +28,19 @@ export default class App extends Component {
   componentDidMount() {
     firebaseAuth.onAuthStateChanged(user => {
       if (user) {
-        console.log("User exists onAuthStateChanged")
-        setTimeout(() => {
-          this.setState({authUser: user, showLoginForm: false})
-          console.log("setState authUser received")
-        }, 1000);
+        this.setState({authUser: user, showLoginForm: false})
       } else {
-        console.log("User not exists onAuthStateChanged")
-        setTimeout(() => {
-          this.setState({authUser: null, showLoginForm: true})
-          console.log("User not exists showloginform onAuthStateChanged" + JSON.stringify(this.state))
-        }, 1000);
+        this.setState({authUser: null, showLoginForm: true})
       }
     });
   }
 
   render() {
-    console.log("inside render" + JSON.stringify(this.state))
     if (this.state.authUser) {
-      console.log("User exists Dashboard")
-      return (<Dashboard/>);
+      return (<Router/>);
     } else if (this.state.showLoginForm) {
-      console.log("User not exists showLoginForm")
       return (<LoginForm/>);
     } else {
-      console.log("User not exists splash screen")
       return (<SplashScreen/>);
     }
   }

@@ -9,10 +9,13 @@
   "dependencies": {
     "firebase": "^4.3.0",
     "react": "^16.0.0-rc.2",
-    "react-native": "^0.48.1",
+    "react-native": "^0.48.2",
+    "react-native-action-button": "^2.8.0",
     "react-native-facebook-login": "^1.5.0",
     "react-native-firebase-auth": "^1.0.1",
     "react-native-google-sign-in": "0.0.16",
+    "react-native-material-bottom-navigation": "^0.5.1",
+    "react-native-material-textfield": "^0.9.0",
     "react-native-vector-icons": "^4.3.0",
     "react-navigation": "^1.0.0-beta.11"
   },

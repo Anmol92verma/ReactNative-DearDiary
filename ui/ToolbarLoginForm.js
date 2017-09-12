@@ -13,23 +13,26 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import LogoutIcon from 'react-native-vector-icons/MaterialCommunityIcons'
 import {Dashboard as dashboard} from './Dashboard'
+import colors from './colors.js'
 
 export default class ToolbarLoginForm extends Component {
 
-    handleBack = () => {
-        console.warn("Back Pressed")
+    constructor(props) {
+        super(props)
     }
+
+    handleBack = () => {}
 
     render() {
         return (
             <View style={styles.toolbarStyle}>
-                <Icon
+                {/*  <Icon
                     onPress={this.handleBack}
                     style={styles.backStyle}
                     name="arrow-back"
                     size={30}
-                    color="#FFFFFF"/>
-                <Text style={styles.toolbarTitle}>Login</Text>
+                    color={colors.colorWhite}/> */}
+                <Text style={styles.toolbarTitle}>Login To Notes!</Text>
             </View>
         );
     }
@@ -38,7 +41,7 @@ AppRegistry.registerComponent('ToolbarLoginForm', () => ToolbarLoginForm);
 
 const styles = StyleSheet.create({
     toolbarStyle: {
-        backgroundColor: '#FFA500',
+        backgroundColor: colors.colorPrimaryDark,
         flex: 0,
         flexDirection: 'row',
         height: 56,
@@ -52,6 +55,6 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         textAlign: 'center',
         justifyContent: 'center',
-        color: "#FFFFFF"
+        color: colors.colorWhite
     }
 });
